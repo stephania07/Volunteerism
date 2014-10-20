@@ -33,7 +33,7 @@ function arrayShuffle(array){
 
 document.addEventListener("DOMContentLoaded", function(){
     var $form = document.getElementById("generate-group");
-    var students = ["Bob", "Joe", "Susie", "Sam", "Julie"];
+    var students = ["Seif", "Jackie", "Jessica", "Kimberly", "Brandon", "Blaise", "Evan", "Greg", "Charisse", "Luke", "Stephania", "David", "Steve", "Adam", "Spencer", "Leon", "Alex", "Gerald", "Sonda", "Beck", "Colby", "Kris"];
 
     $form.addEventListener("submit", function(event){
         event.preventDefault();

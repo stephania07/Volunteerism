@@ -12,23 +12,23 @@ function addItemToList($list, itemText){
 }
 
 function neighborGrouping(list, groupSize, target){
-	var listClone = list.slice(0);
-    	while( listClone.length > 0){
-    		var listItems = listClone.splice(0, groupSize);
-    		addItemToList(target, listItems.join(" &amp; ")); 
-    	}
+  var listClone = list.slice(0);
+      while( listClone.length > 0){
+        var listItems = listClone.splice(0, groupSize);
+        addItemToList(target, listItems.join(" &amp; "));
+      }
 }
 
 function arrayShuffle(array){
-	var arrayClone = array.slice(0);
-	var temp;
-	for(var i = 0; i < arrayClone.length; i++){
-		var rand = getRandomInt(0, arrayClone.length);
-		temp = arrayClone[i];
-		arrayClone[i] = arrayClone[rand];
-		arrayClone[rand] = temp;
-	}
-	return arrayClone;
+  var arrayClone = array.slice(0);
+  var temp;
+  for(var i = 0; i < arrayClone.length; i++){
+    var rand = getRandomInt(0, arrayClone.length);
+    temp = arrayClone[i];
+    arrayClone[i] = arrayClone[rand];
+    arrayClone[rand] = temp;
+  }
+  return arrayClone;
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -48,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function(){
             addItemToList($ul, studentName);
         } else if(groupCriteria === "neighbor-pairing") {
             neighborGrouping(students, 2, $ul);
-            
+
         } else if(groupCriteria === "team-three"){
-           	neighborGrouping(students, 3, $ul);
+             neighborGrouping(students, 3, $ul);
         }else if(groupCriteria ==="randPair"){
-        		var shuffledStudents = arrayShuffle(students);
-        		neighborGrouping(shuffledStudents, 2, $ul);
+            var shuffledStudents = arrayShuffle(students);
+            neighborGrouping(shuffledStudents, 2, $ul);
         }
-        
+
     });
 });

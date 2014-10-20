@@ -5,6 +5,12 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function addItemToList($list, itemText){
+    var $li = document.createElement("li");
+    $li.innerHTML = itemText;
+    $list.appendChild($li);
+}
+
 document.addEventListener("DOMContentLoaded", function(){
     var $form = document.getElementById("generate-group");
     var students = ["Bob", "Joe", "Susie", "Sam", "Julie"];
@@ -17,18 +23,14 @@ document.addEventListener("DOMContentLoaded", function(){
         var groupCriteria = $form.querySelector("select").value;
 
         if(groupCriteria === "random-student"){
-            var $li = document.createElement("li");
             var studentNumber = getRandomInt(0, students.length);
             var studentName = students[studentNumber];
-            $li.innerHTML = studentName;
-            $ul.appendChild($li);
+            addItemToList($ul, studentName);
         } else if(groupCriteria === "neighbor-pairing") {
-            for(var i = 0; i < students.length; i += 2){
-                var studentName1 = students[i];
-                var studentName2 = students[i+1];
-                var $li = document.createElement("li");
-                $li.innerHTML = studentName1 + " &amp; " + studentName2;
-                $ul.appendChild($li);
+            var studentsClone = students.slice(0);
+            while( studentsClone.length > 0 ){
+                var studentNames = studentsClone.splice(0, 2);
+                addItemToList($ul, studentNames.join(" &amp; "));
             }
         }
     });

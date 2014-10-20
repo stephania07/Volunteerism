@@ -31,9 +31,28 @@ function arrayShuffle(array){
   return arrayClone;
 }
 
+function show(element) {
+  element.classList.remove("hidden");
+}
+
+function hide(element) {
+  element.classList.add("hidden");
+}
+
 document.addEventListener("DOMContentLoaded", function(){
     var $form = document.getElementById("generate-group");
     var students = ["Seif", "Jackie", "Jessica", "Kimberly", "Brandon", "Blaise", "Evan", "Greg", "Charisse", "Luke", "Stephania", "David", "Steve", "Adam", "Spencer", "Leon", "Alex", "Gerald", "Sonda", "Beck", "Colby", "Kris"];
+
+    var $select = $form.querySelector("select");
+    var $numBox = $form.querySelector("input[type='number']");
+    $select.addEventListener("change", function(event){
+      if (event.currentTarget.value === "randN") {
+        show($numBox);
+      } else {
+        hide($numBox);
+      }
+
+    });
 
     $form.addEventListener("submit", function(event){
         event.preventDefault();
@@ -48,13 +67,13 @@ document.addEventListener("DOMContentLoaded", function(){
             addItemToList($ul, studentName);
         } else if(groupCriteria === "neighbor-pairing") {
             neighborGrouping(students, 2, $ul);
-
         } else if(groupCriteria === "team-three"){
              neighborGrouping(students, 3, $ul);
-        }else if(groupCriteria ==="randPair"){
+        } else if(groupCriteria ==="randPair"){
             var shuffledStudents = arrayShuffle(students);
             neighborGrouping(shuffledStudents, 2, $ul);
-        }
+        } else if(groupCriteria ==="randN"){
 
+        }
     });
 });

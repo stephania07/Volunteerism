@@ -13,12 +13,23 @@ document.addEventListener("DOMContentLoaded", function(){
         event.preventDefault();
         var $ul = document.getElementById("results");
         $ul.innerHTML = "";
-        var $li = document.createElement("li");
 
-        var studentNumber = getRandomInt(0, students.length);
-        var studentName = students[studentNumber];
+        var groupCriteria = $form.querySelector("select").value;
 
-        $li.innerHTML = studentName;
-        $ul.appendChild($li);
+        if(groupCriteria === "random-student"){
+            var $li = document.createElement("li");
+            var studentNumber = getRandomInt(0, students.length);
+            var studentName = students[studentNumber];
+            $li.innerHTML = studentName;
+            $ul.appendChild($li);
+        } else if(groupCriteria === "neighbor-pairing") {
+            for(var i = 0; i < students.length; i += 2){
+                var studentName1 = students[i];
+                var studentName2 = students[i+1];
+                var $li = document.createElement("li");
+                $li.innerHTML = studentName1 + " &amp; " + studentName2;
+                $ul.appendChild($li);
+            }
+        }
     });
 });
